@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Apex Strategic Group LLC</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #080808;
+    --surface: #111111;
+    --card: #181818;
+    --border: #2a2a2a;
+    --border-light: #3a3a3a;
+    --silver: #c0c0c0;
+    --silver-dim: #8a8a8a;
+    --silver-faint: #4a4a4a;
+    --white: #f0f0f0;
+    --accent: #a8a8a8;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--black);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px; height: 68px;
+    background: rgba(8,8,8,0.92);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+  }
+  .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .nav-logo img { height: 36px; filter: brightness(0) invert(0.85); }
+  .nav-brand { font-family: 'Rajdhani', sans-serif; font-size: 15px; font-weight: 600; letter-spacing: 0.12em; color: var(--silver); text-transform: uppercase; }
+  .nav-links { display: flex; gap: 36px; }
+  .nav-links a { font-family: 'Rajdhani', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--silver-dim); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--silver); }
+  .nav-cta { font-family: 'Rajdhani', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--black); background: var(--silver); padding: 8px 20px; text-decoration: none; transition: background 0.2s; }
+  .nav-cta:hover { background: var(--white); }
+  /* HERO */
+  .hero {
+    position: relative; height: 100vh; display: flex; align-items: center; justify-content: center;
+    overflow: hidden; background: var(--black);
+  }
+  .hero-grid {
+    position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(192,192,192,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(192,192,192,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 30%, transparent 100%);
+  }
+  .hero-radial {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(80,80,80,0.18) 0%, transparent 70%);
+  }
+  .hero-content { position: relative; text-align: center; max-width: 860px; padding: 0 32px; }
+  .hero-logo { width: 130px; margin: 0 auto 32px; display: block; filter: brightness(0) invert(0.9) drop-shadow(0 0 24px rgba(192,192,192,0.25)); }
+  .hero-eyebrow { font-family: 'Rajdhani', sans-serif; font-size: 12px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--silver-dim); margin-bottom: 16px; }
+  .hero-title { font-family: 'Rajdhani', sans-serif; font-size: clamp(38px, 6vw, 72px); font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; line-height: 1.05; color: var(--white); margin-bottom: 8px; }
+  .hero-title span { color: var(--silver); }
+  .hero-sub { font-family: 'Rajdhani', sans-serif; font-size: clamp(16px, 2.5vw, 22px); font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--silver-dim); margin-bottom: 40px; }
+  .hero-rule { width: 64px; height: 1px; background: var(--silver); margin: 0 auto 40px; }
+  .hero-desc { font-size: 16px; line-height: 1.75; color: var(--silver-dim); max-width: 560px; margin: 0 auto 48px; font-weight: 300; }
+  .hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary { font-family: 'Rajdhani', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--black); background: var(--silver); padding: 14px 32px; text-decoration: none; transition: background 0.2s; }
+  .btn-primary:hover { background: var(--white); }
+  .btn-outline { font-family: 'Rajdhani', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--silver); background: transparent; border: 1px solid var(--silver-faint); padding: 14px 32px; text-decoration: none; transition: border-color 0.2s, color 0.2s; }
+  .btn-outline:hover { border-color: var(--silver); color: var(--white); }
+  .hero-scroll { position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, transparent, var(--silver-faint)); animation: scrollPulse 2s ease-in-out infinite; }
+  .scroll-label { font-family: 'Rajdhani', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--silver-faint); }
+  @keyframes scrollPulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+  /* SECTIONS */
+  section { padding: 100px 48px; }
+  .section-label { font-family: 'Rajdhani', sans-serif; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--silver-dim); margin-bottom: 12px; }
+  .section-title { font-family: 'Rajdhani', sans-serif; font-size: clamp(28px, 4vw, 48px); font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--white); margin-bottom: 24px; line-height: 1.1; }
+  .section-title span { color: var(--silver); }
+  .section-rule { width: 48px; height: 2px; background: var(--silver); margin-bottom: 40px; }
+  /* SERVICES */
+  #services { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .services-header { max-width: 600px; margin-bottom: 64px; }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2px; }
+  .service-card { background: var(--card); border: 1px solid var(--border); padding: 40px 36px; position: relative; overflow: hidden; transition: border-color 0.3s; cursor: default; }
+  .service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--silver-faint); transition: background 0.3s; }
+  .service-card:hover { border-color: var(--silver-faint); }
+  .service-card:hover::before { background: var(--silver); }
+  .service-icon { font-size: 28px; color: var(--silver-dim); margin-bottom: 20px; display: block; }
+  .service-num { font-family: 'Rajdhani', sans-serif; font-size: 11px; letter-spacing: 0.2em; color: var(--silver-faint); margin-bottom: 12px; display: block; }
+  .service-name { font-family: 'Rajdhani', sans-serif; font-size: 20px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--white); margin-bottom: 16px; }
+  .service-desc { font-size: 14px; line-height: 1.75; color: var(--silver-dim); font-weight: 300; }
+  .service-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+  .tag { font-family: 'Rajdhani', sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--silver-faint); border: 1px solid var(--border); padding: 4px 10px; }
+  /* ABOUT */
+  #about { background: var(--black); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; max-width: 1200px; }
+  .about-text p { font-size: 15px; line-height: 1.85; color: var(--silver-dim); font-weight: 300; margin-bottom: 20px; }
+  .about-text p strong { color: var(--silver); font-weight: 500; }
+  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 48px; }
+  .stat { border-left: 2px solid var(--silver); padding-left: 20px; }
+  .stat-num { font-family: 'Rajdhani', sans-serif; font-size: 36px; font-weight: 700; color: var(--white); line-height: 1; margin-bottom: 4px; }
+  .stat-label { font-family: 'Rajdhani', sans-serif; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--silver-dim); }
+  .credentials { padding-left: 0; }
+  .cred-item { border: 1px solid var(--border); padding: 28px 32px; margin-bottom: 2px; transition: border-color 0.2s; }
+  .cred-item:hover { border-color: var(--border-light); }
+  .cred-title { font-family: 'Rajdhani', sans-serif; font-size: 15px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--white); margin-bottom: 6px; }
+  .cred-body { font-size: 13px; line-height: 1.65; color: var(--silver-dim); font-weight: 300; }
+  /* APP SECTION */
+  #app { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .app-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; max-width: 1100px; }
+  .app-desc { font-size: 15px; line-height: 1.85; color: var(--silver-dim); font-weight: 300; margin-bottom: 32px; }
+  .app-features { list-style: none; }
+  .app-features li { display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--silver-dim); padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .app-features li::before { content: ''; width: 6px; height: 6px; background: var(--silver); flex-shrink: 0; }
+  .app-badges { display: flex; gap: 12px; margin-top: 36px; flex-wrap: wrap; }
+  .app-badge { display: flex; align-items: center; gap: 10px; border: 1px solid var(--border-light); padding: 12px 20px; text-decoration: none; color: var(--white); transition: border-color 0.2s; }
+  .app-badge:hover { border-color: var(--silver); }
+  .app-badge-icon { font-size: 22px; color: var(--silver); }
+  .app-badge-text small { display: block; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--silver-dim); }
+  .app-badge-text strong { font-family: 'Rajdhani', sans-serif; font-size: 16px; font-weight: 600; color: var(--white); }
+  .phone-mockup { display: flex; justify-content: center; }
+  .phone-frame { width: 220px; background: var(--card); border: 1px solid var(--border-light); border-radius: 28px; padding: 20px 16px; position: relative; }
+  .phone-notch { width: 60px; height: 12px; background: var(--border-light); border-radius: 6px; margin: 0 auto 20px; }
+  .phone-screen { background: var(--black); border-radius: 12px; padding: 20px; }
+  .phone-app-name { font-family: 'Rajdhani', sans-serif; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--silver-dim); margin-bottom: 16px; }
+  .phone-logo { width: 48px; margin: 0 auto 16px; display: block; filter: brightness(0) invert(0.8); }
+  .phone-menu-item { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 8px 12px; margin-bottom: 8px; font-size: 11px; color: var(--silver-dim); font-family: 'Rajdhani', sans-serif; letter-spacing: 0.05em; }
+  /* CONTACT */
+  #contact { background: var(--black); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; max-width: 1100px; }
+  .contact-info { color: var(--silver-dim); font-size: 15px; line-height: 1.85; font-weight: 300; margin-bottom: 40px; }
+  .contact-detail { display: flex; align-items: center; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--border); }
+  .contact-detail-label { font-family: 'Rajdhani', sans-serif; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--silver-faint); min-width: 80px; }
+  .contact-detail-val { font-size: 14px; color: var(--silver); }
+  .contact-form { display: flex; flex-direction: column; gap: 16px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-label { font-family: 'Rajdhani', sans-serif; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--silver-dim); }
+  .form-input { background: var(--surface); border: 1px solid var(--border); color: var(--white); font-size: 14px; padding: 12px 16px; outline: none; transition: border-color 0.2s; font-family: 'Inter', sans-serif; }
+  .form-input:focus { border-color: var(--silver-dim); }
+  .form-input::placeholder { color: var(--silver-faint); }
+  textarea.form-input { resize: vertical; min-height: 120px; }
+  .form-submit { font-family: 'Rajdhani', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--black); background: var(--silver); border: none; padding: 14px 32px; cursor: pointer; transition: background 0.2s; align-self: flex-start; }
+  .form-submit:hover { background: var(--white); }
+  /* FOOTER */
+  footer { background: var(--surface); border-top: 1px solid var(--border); padding: 48px 48px 32px; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+  .footer-brand { }
+  .footer-logo { width: 56px; filter: brightness(0) invert(0.75); margin-bottom: 16px; display: block; }
+  .footer-brand-name { font-family: 'Rajdhani', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--silver); margin-bottom: 12px; }
+  .footer-brand-desc { font-size: 13px; line-height: 1.7; color: var(--silver-faint); font-weight: 300; }
+  .footer-col-title { font-family: 'Rajdhani', sans-serif; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--silver-dim); margin-bottom: 16px; }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-links a { font-size: 13px; color: var(--silver-faint); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--silver); }
+  .footer-bottom { border-top: 1px solid var(--border); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .footer-copy { font-size: 12px; color: var(--silver-faint); font-family: 'Rajdhani', sans-serif; letter-spacing: 0.08em; }
+  .footer-legal { display: flex; gap: 24px; }
+  .footer-legal a { font-size: 12px; color: var(--silver-faint); text-decoration: none; font-family: 'Rajdhani', sans-serif; letter-spacing: 0.08em; transition: color 0.2s; }
+  .footer-legal a:hover { color: var(--silver); }
+  /* UTILITY */
+  .max-w { max-width: 1280px; margin: 0 auto; }
+  @media (max-width: 900px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    section { padding: 72px 24px; }
+    .about-grid, .app-grid, .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#home" class="nav-logo">
+    <img src="/mnt/user-data/uploads/ASG_LOGO.png" alt="ASG Logo" />
+    <span class="nav-brand">Apex Strategic Group</span>
+  </a>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#about">About</a>
+    <a href="#app">Platform</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="#contact" class="nav-cta">Engage ASG</a>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-grid"></div>
+  <div class="hero-radial"></div>
+  <div class="hero-content">
+    <img src="/mnt/user-data/uploads/ASG_LOGO.png" alt="Apex Strategic Group" class="hero-logo" />
+    <p class="hero-eyebrow">Apex Strategic Group LLC</p>
+    <h1 class="hero-title">Precision.<br/><span>Strategy.</span> Results.</h1>
+    <p class="hero-sub">Security Consulting &amp; Operational Support</p>
+    <div class="hero-rule"></div>
+    <p class="hero-desc">Elite consulting for security operations, intelligence services, executive protection, and business development — backed by decades of government and private sector experience.</p>
+    <div class="hero-actions">
+      <a href="#services" class="btn-primary">View Services</a>
+      <a href="#contact" class="btn-outline">Request Consultation</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span class="scroll-label">Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="max-w">
+    <div class="services-header">
+      <p class="section-label">Capabilities</p>
+      <h2 class="section-title">What We <span>Deliver</span></h2>
+      <div class="section-rule"></div>
+      <p style="font-size:15px;line-height:1.8;color:var(--silver-dim);font-weight:300;">ASG provides institutional-grade consulting across four core verticals — each grounded in real-world operational experience.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="service-num">01</span>
+        <div class="service-name">Executive Protection</div>
+        <p class="service-desc">Full-spectrum EP consulting: advance operations, motorcade TTPs, formations, emergency action planning, PACE communications, duty station protocols, and scenario-based training programs to WPS/State Department standards.</p>
+        <div class="service-tags">
+          <span class="tag">Advance Ops</span>
+          <span class="tag">Motorcade TTPs</span>
+          <span class="tag">EAPs</span>
+          <span class="tag">Training</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <span class="service-num">02</span>
+        <div class="service-name">Intelligence &amp; OSINT</div>
+        <p class="service-desc">Open-source intelligence collection, threat assessment, pattern-of-life analysis, venue risk profiling, and structured analytical products for corporate, legal, and protective operations clients.</p>
+        <div class="service-tags">
+          <span class="tag">OSINT</span>
+          <span class="tag">Threat Assessment</span>
+          <span class="tag">POL Analysis</span>
+          <span class="tag">Risk Reports</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <span class="service-num">03</span>
+        <div class="service-name">Security Business Dev</div>
+        <p class="service-desc">Go-to-market strategy, SOPs development, staffing and contractor program design, MSA structuring, client acquisition frameworks, and B2B consulting for security firms at any stage of growth.</p>
+        <div class="service-tags">
+          <span class="tag">SOPs</span>
+          <span class="tag">Staffing Design</span>
+          <span class="tag">B2B Strategy</span>
+          <span class="tag">MSA Structuring</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <span class="service-num">04</span>
+        <div class="service-name">Operational Oversight</div>
+        <p class="service-desc">On-the-ground operational support, program audits, training course design and execution, contractor network management, and embedded advisory for EP firms and select retail security operations.</p>
+        <div class="service-tags">
+          <span class="tag">Program Audits</span>
+          <span class="tag">Embedded Advisory</span>
+          <span class="tag">Contractor Mgmt</span>
+          <span class="tag">Retail Security</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="max-w">
+    <div class="about-grid">
+      <div class="about-text">
+        <p class="section-label">Who We Are</p>
+        <h2 class="section-title">Built by <span>Operators</span></h2>
+        <div class="section-rule"></div>
+        <p>Apex Strategic Group LLC is a practitioner-led consulting firm operating at the intersection of military, government, and private security sectors. Our principals bring firsthand experience from <strong>diplomatic security</strong>, international field operations, and elite protective operations communities.</p>
+        <p>We don't advise from the sidelines. Every recommendation we make is grounded in the same standards applied in WPS/State Department environments and reinforced by years of real-world protective operations.</p>
+        <p>Whether you need to stand up a new EP program, assess an existing operation, or build your security firm's commercial infrastructure — <strong>ASG delivers institutional rigor at the speed of business.</strong></p>
+        <div class="about-stats">
+          <div class="stat">
+            <div class="stat-num">20+</div>
+            <div class="stat-label">Years Combined Field Ops</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">3</div>
+            <div class="stat-label">Government Sectors Served</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">HVP</div>
+            <div class="stat-label">Principal-Level Experience</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">INTL</div>
+            <div class="stat-label">Multi-Theater Operations</div>
+          </div>
+        </div>
+      </div>
+      <div class="credentials">
+        <p class="section-label" style="margin-bottom:24px;">Foundational Experience</p>
+        <div class="cred-item">
+          <div class="cred-title">Military Service</div>
+          <div class="cred-body">Operational experience and discipline developed in high-stakes military environments, forming the tactical foundation of ASG's methodology.</div>
+        </div>
+        <div class="cred-item">
+          <div class="cred-title">Diplomatic Security</div>
+          <div class="cred-body">Protective operations conducted to Department of State/WPS standards — advance work, motorcade operations, and principal-level protection in international environments.</div>
+        </div>
+        <div class="cred-item">
+          <div class="cred-title">Intelligence Operations</div>
+          <div class="cred-body">Collection, analysis, and delivery of intelligence products supporting protective and corporate clients across multiple operational theaters.</div>
+        </div>
+        <div class="cred-item">
+          <div class="cred-title">Private Sector Leadership</div>
+          <div class="cred-body">Direct experience building and advising EP firms — from SOPs architecture to contractor staffing design and client acquisition strategy.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="app">
+  <div class="max-w">
+    <div class="app-grid">
+      <div>
+        <p class="section-label">ASG Platform</p>
+        <h2 class="section-title">Operations in Your <span>Pocket</span></h2>
+        <div class="section-rule"></div>
+        <p class="app-desc">The ASG mobile platform (iOS &amp; Android) gives clients and field teams secure access to operational resources, reporting tools, and direct communication with ASG consultants — anywhere in the world.</p>
+        <ul class="app-features">
+          <li>Secure client portal and document access</li>
+          <li>Real-time operational reporting</li>
+          <li>Encrypted messaging with ASG advisors</li>
+          <li>Field assessment and checklist tools</li>
+          <li>Threat alert notifications and briefings</li>
+          <li>Training module access (EP, OSINT, SOP library)</li>
+        </ul>
+        <div class="app-badges">
+          <a href="#" class="app-badge">
+            <span class="app-badge-icon">&#xf8ff;</span>
+            <div class="app-badge-text">
+              <small>Download on the</small>
+              <strong>App Store</strong>
+            </div>
+          </a>
+          <a href="#" class="app-badge">
+            <span class="app-badge-icon">&#9654;</span>
+            <div class="app-badge-text">
+              <small>Get it on</small>
+              <strong>Google Play</strong>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="phone-mockup">
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <p class="phone-app-name">ASG Platform</p>
+            <img src="/mnt/user-data/uploads/ASG_LOGO.png" class="phone-logo" alt="ASG" />
+            <div class="phone-menu-item">&#x25B6; Active Briefs</div>
+            <div class="phone-menu-item">&#x25B6; Field Reports</div>
+            <div class="phone-menu-item">&#x25B6; Secure Comms</div>
+            <div class="phone-menu-item">&#x25B6; Training Library</div>
+            <div class="phone-menu-item">&#x25B6; Threat Alerts</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="max-w">
+    <div class="contact-grid">
+      <div>
+        <p class="section-label">Get in Touch</p>
+        <h2 class="section-title">Engage <span>ASG</span></h2>
+        <div class="section-rule"></div>
+        <p class="contact-info">All engagements begin with a confidential consultation. Whether you're a security firm seeking operational guidance, a corporate client requiring EP support, or an organization in need of intelligence services — we're ready to talk.</p>
+        <div class="contact-detail">
+          <span class="contact-detail-label">Email</span>
+          <span class="contact-detail-val">contact@apexstrategicgroupllc.com</span>
+        </div>
+        <div class="contact-detail">
+          <span class="contact-detail-label">Web</span>
+          <span class="contact-detail-val">apexstrategicgroupllc.com</span>
+        </div>
+        <div class="contact-detail">
+          <span class="contact-detail-label">Entity</span>
+          <span class="contact-detail-val">Apex Strategic Group LLC</span>
+        </div>
+        <div class="contact-detail">
+          <span class="contact-detail-label">NDA</span>
+          <span class="contact-detail-val">Available upon request</span>
+        </div>
+      </div>
+      <div>
+        <div class="contact-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">First Name</label>
+              <input type="text" class="form-input" placeholder="John" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Last Name</label>
+              <input type="text" class="form-input" placeholder="Smith" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Organization</label>
+            <input type="text" class="form-input" placeholder="Company or Agency" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-input" placeholder="you@organization.com" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Service Area</label>
+            <select class="form-input" style="appearance:none;cursor:pointer;">
+              <option value="" style="background:#181818;">Select a service</option>
+              <option style="background:#181818;">Executive Protection</option>
+              <option style="background:#181818;">Intelligence &amp; OSINT</option>
+              <option style="background:#181818;">Security Business Development</option>
+              <option style="background:#181818;">Operational Oversight</option>
+              <option style="background:#181818;">Multiple / General Inquiry</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Message</label>
+            <textarea class="form-input" placeholder="Briefly describe your need or inquiry..."></textarea>
+          </div>
+          <button class="form-submit" type="button">Submit Inquiry</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="max-w">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="/mnt/user-data/uploads/ASG_LOGO.png" class="footer-logo" alt="ASG" />
+        <div class="footer-brand-name">Apex Strategic Group LLC</div>
+        <p class="footer-brand-desc">Practitioner-led security consulting. Operational rigor. Institutional standards. Real-world results.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Services</div>
+        <ul class="footer-links">
+          <li><a href="#services">Executive Protection</a></li>
+          <li><a href="#services">Intelligence / OSINT</a></li>
+          <li><a href="#services">Business Development</a></li>
+          <li><a href="#services">Operational Support</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <ul class="footer-links">
+          <li><a href="#about">About ASG</a></li>
+          <li><a href="#app">ASG Platform</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#contact">Engage ASG</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Connect</div>
+        <ul class="footer-links">
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">App Store</a></li>
+          <li><a href="#">Google Play</a></li>
+          <li><a href="#">NDA / Intake Form</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2025 Apex Strategic Group LLC. All rights reserved.</span>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Disclaimer</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
