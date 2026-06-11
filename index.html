@@ -36,7 +36,12 @@
     backdrop-filter: blur(12px);
   }
   .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-  .nav-logo img { height: 36px; filter: brightness(0) invert(0.85); }
+  .nav-logo img {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(1.15) contrast(1.1) drop-shadow(0 0 8px rgba(192,192,192,0.25));
+}
   .nav-brand { font-family: 'Rajdhani', sans-serif; font-size: 15px; font-weight: 600; letter-spacing: 0.12em; color: var(--silver); text-transform: uppercase; }
   .nav-links { display: flex; gap: 36px; }
   .nav-links a { font-family: 'Rajdhani', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--silver-dim); text-decoration: none; transition: color 0.2s; }
