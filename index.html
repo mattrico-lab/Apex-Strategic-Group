@@ -112,26 +112,6 @@
   .cred-item:hover { border-color: var(--border-light); }
   .cred-title { font-family: 'Rajdhani', sans-serif; font-size: 15px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--white); margin-bottom: 6px; }
   .cred-body { font-size: 13px; line-height: 1.65; color: var(--silver-dim); font-weight: 300; }
-  /* APP SECTION */
-  #app { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-  .app-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; max-width: 1100px; }
-  .app-desc { font-size: 15px; line-height: 1.85; color: var(--silver-dim); font-weight: 300; margin-bottom: 32px; }
-  .app-features { list-style: none; }
-  .app-features li { display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--silver-dim); padding: 10px 0; border-bottom: 1px solid var(--border); }
-  .app-features li::before { content: ''; width: 6px; height: 6px; background: var(--silver); flex-shrink: 0; }
-  .app-badges { display: flex; gap: 12px; margin-top: 36px; flex-wrap: wrap; }
-  .app-badge { display: flex; align-items: center; gap: 10px; border: 1px solid var(--border-light); padding: 12px 20px; text-decoration: none; color: var(--white); transition: border-color 0.2s; }
-  .app-badge:hover { border-color: var(--silver); }
-  .app-badge-icon { font-size: 22px; color: var(--silver); }
-  .app-badge-text small { display: block; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--silver-dim); }
-  .app-badge-text strong { font-family: 'Rajdhani', sans-serif; font-size: 16px; font-weight: 600; color: var(--white); }
-  .phone-mockup { display: flex; justify-content: center; }
-  .phone-frame { width: 220px; background: var(--card); border: 1px solid var(--border-light); border-radius: 28px; padding: 20px 16px; position: relative; }
-  .phone-notch { width: 60px; height: 12px; background: var(--border-light); border-radius: 6px; margin: 0 auto 20px; }
-  .phone-screen { background: var(--black); border-radius: 12px; padding: 20px; }
-  .phone-app-name { font-family: 'Rajdhani', sans-serif; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--silver-dim); margin-bottom: 16px; }
-  .phone-logo {  width: 70px;  margin: 0 auto 16px;  display: block;  object-fit: contain;  filter: brightness(1.15) contrast(1.1);}
-  .phone-menu-item { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 8px 12px; margin-bottom: 8px; font-size: 11px; color: var(--silver-dim); font-family: 'Rajdhani', sans-serif; letter-spacing: 0.05em; }
   /* CONTACT */
   #contact { background: var(--black); }
   .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; max-width: 1100px; }
@@ -193,7 +173,7 @@
     nav { padding: 0 20px; }
     .nav-links { display: none; }
     section { padding: 72px 24px; }
-    .about-grid, .app-grid, .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 48px; }
     .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
     .form-row { grid-template-columns: 1fr; }
   }
@@ -209,7 +189,6 @@
   <div class="nav-links">
     <a href="#services">Services</a>
     <a href="#about">About</a>
-    <a href="#app">Platform</a>
     <a href="#contact">Contact</a>
   </div>
   <a href="#contact" class="nav-cta">Engage ASG</a>
@@ -345,57 +324,6 @@
   </div>
 </section>
 
-<section id="app">
-  <div class="max-w">
-    <div class="app-grid">
-      <div>
-        <p class="section-label">ASG Platform</p>
-        <h2 class="section-title">Operations in Your <span>Pocket</span></h2>
-        <div class="section-rule"></div>
-        <p class="app-desc">The ASG mobile platform (iOS &amp; Android) gives clients and field teams secure access to operational resources, reporting tools, and direct communication with ASG consultants — anywhere in the world.</p>
-        <ul class="app-features">
-          <li>Secure client portal and document access</li>
-          <li>Real-time operational reporting</li>
-          <li>Encrypted messaging with ASG advisors</li>
-          <li>Field assessment and checklist tools</li>
-          <li>Threat alert notifications and briefings</li>
-          <li>Training module access (EP, OSINT, SOP library)</li>
-        </ul>
-        <div class="app-badges">
-          <a href="#" class="app-badge">
-            <span class="app-badge-icon">&#xf8ff;</span>
-            <div class="app-badge-text">
-              <small>Download on the</small>
-              <strong>App Store</strong>
-            </div>
-          </a>
-          <a href="#" class="app-badge">
-            <span class="app-badge-icon">&#9654;</span>
-            <div class="app-badge-text">
-              <small>Get it on</small>
-              <strong>Google Play</strong>
-            </div>
-          </a>
-        </div>
-      </div>
-      <div class="phone-mockup">
-        <div class="phone-frame">
-          <div class="phone-notch"></div>
-          <div class="phone-screen">
-            <p class="phone-app-name">ASG Platform</p>
-            <img src="./ASG_Logo2.png" class="phone-logo" alt="ASG" />
-            <div class="phone-menu-item">&#x25B6; Active Briefs</div>
-            <div class="phone-menu-item">&#x25B6; Field Reports</div>
-            <div class="phone-menu-item">&#x25B6; Secure Comms</div>
-            <div class="phone-menu-item">&#x25B6; Training Library</div>
-            <div class="phone-menu-item">&#x25B6; Threat Alerts</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section id="contact">
   <div class="max-w">
     <div class="contact-grid">
@@ -431,7 +359,7 @@
         <div class="contact-form" id="intake-form">
 
           <!-- Web3Forms hidden config -->
-          <input type="hidden" name="access_key" value="a20133c1-716c-4fde-adad-682bd5fb9ce7" />
+          <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE" />
           <input type="hidden" name="subject" value="New ASG Inquiry" />
           <input type="hidden" name="from_name" value="ASG Website" />
           <!-- Honeypot spam filter -->
@@ -501,7 +429,6 @@
         <div class="footer-col-title">Company</div>
         <ul class="footer-links">
           <li><a href="#about">About ASG</a></li>
-          <li><a href="#app">ASG Platform</a></li>
           <li><a href="#contact">Contact</a></li>
           <li><a href="#contact">Engage ASG</a></li>
         </ul>
@@ -510,8 +437,6 @@
         <div class="footer-col-title">Connect</div>
         <ul class="footer-links">
           <li><a href="#">LinkedIn</a></li>
-          <li><a href="#">App Store</a></li>
-          <li><a href="#">Google Play</a></li>
           <li><a href="#">NDA / Intake Form</a></li>
         </ul>
       </div>
@@ -611,4 +536,3 @@
 
 </body>
 </html>
-
