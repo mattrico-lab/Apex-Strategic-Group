@@ -149,6 +149,28 @@
   textarea.form-input { resize: vertical; min-height: 120px; }
   .form-submit { font-family: 'Rajdhani', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--black); background: var(--silver); border: none; padding: 14px 32px; cursor: pointer; transition: background 0.2s; align-self: flex-start; }
   .form-submit:hover { background: var(--white); }
+  .form-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+  /* FORM STATUS MESSAGE */
+  #form-status {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 12px 16px;
+    display: none;
+  }
+  #form-status.success {
+    display: block;
+    color: var(--silver);
+    border: 1px solid var(--border-light);
+    background: rgba(192,192,192,0.05);
+  }
+  #form-status.error {
+    display: block;
+    color: #cc4444;
+    border: 1px solid #441111;
+    background: rgba(204,68,68,0.05);
+  }
   /* FOOTER */
   footer { background: var(--surface); border-top: 1px solid var(--border); padding: 48px 48px 32px; }
   .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
@@ -400,28 +422,42 @@
         </div>
       </div>
       <div>
-        <div class="contact-form">
+        <!-- ================================================
+             INTAKE FORM — powered by Web3Forms (free)
+             BEFORE GOING LIVE: replace YOUR_ACCESS_KEY_HERE
+             with the key emailed to contact@apexstrategicgroupllc.com
+             after signing up at https://web3forms.com
+        ================================================ -->
+        <div class="contact-form" id="intake-form">
+
+          <!-- Web3Forms hidden config -->
+          <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE" />
+          <input type="hidden" name="subject" value="New ASG Inquiry" />
+          <input type="hidden" name="from_name" value="ASG Website" />
+          <!-- Honeypot spam filter -->
+          <input type="checkbox" name="botcheck" style="display:none;" />
+
           <div class="form-row">
             <div class="form-group">
               <label class="form-label">First Name</label>
-              <input type="text" class="form-input" placeholder="John" />
+              <input type="text" id="first_name" name="first_name" class="form-input" placeholder="John" required />
             </div>
             <div class="form-group">
               <label class="form-label">Last Name</label>
-              <input type="text" class="form-input" placeholder="Smith" />
+              <input type="text" id="last_name" name="last_name" class="form-input" placeholder="Smith" required />
             </div>
           </div>
           <div class="form-group">
             <label class="form-label">Organization</label>
-            <input type="text" class="form-input" placeholder="Company or Agency" />
+            <input type="text" id="organization" name="organization" class="form-input" placeholder="Company or Agency" />
           </div>
           <div class="form-group">
             <label class="form-label">Email</label>
-            <input type="email" class="form-input" placeholder="you@organization.com" />
+            <input type="email" id="email" name="email" class="form-input" placeholder="you@organization.com" required />
           </div>
           <div class="form-group">
             <label class="form-label">Service Area</label>
-            <select class="form-input" style="appearance:none;cursor:pointer;">
+            <select id="service_area" name="service_area" class="form-input" style="appearance:none;cursor:pointer;" required>
               <option value="" style="background:#181818;">Select a service</option>
               <option style="background:#181818;">Executive Protection</option>
               <option style="background:#181818;">Intelligence &amp; OSINT</option>
@@ -432,9 +468,12 @@
           </div>
           <div class="form-group">
             <label class="form-label">Message</label>
-            <textarea class="form-input" placeholder="Briefly describe your need or inquiry..."></textarea>
+            <textarea id="message" name="message" class="form-input" placeholder="Briefly describe your need or inquiry..." required></textarea>
           </div>
-          <button class="form-submit" type="button">Submit Inquiry</button>
+
+          <button class="form-submit" id="submit-btn" type="button">Submit Inquiry</button>
+          <div id="form-status"></div>
+
         </div>
       </div>
     </div>
@@ -488,5 +527,88 @@
   </div>
 </footer>
 
+<!-- ================================================
+     Web3Forms submission handler
+     No external libraries needed — pure vanilla JS
+================================================ -->
+<script>
+  const submitBtn = document.getElementById('submit-btn');
+  const statusEl  = document.getElementById('form-status');
+
+  const fields = {
+    access_key:   () => document.querySelector('#intake-form [name="access_key"]').value,
+    subject:      () => document.querySelector('#intake-form [name="subject"]').value,
+    from_name:    () => document.querySelector('#intake-form [name="from_name"]').value,
+    botcheck:     () => document.querySelector('#intake-form [name="botcheck"]').checked,
+    first_name:   () => document.getElementById('first_name').value.trim(),
+    last_name:    () => document.getElementById('last_name').value.trim(),
+    organization: () => document.getElementById('organization').value.trim(),
+    email:        () => document.getElementById('email').value.trim(),
+    service_area: () => document.getElementById('service_area').value,
+    message:      () => document.getElementById('message').value.trim(),
+  };
+
+  function validate() {
+    if (!fields.first_name()) return 'First name is required.';
+    if (!fields.last_name())  return 'Last name is required.';
+    if (!fields.email())      return 'Email address is required.';
+    if (!fields.service_area()) return 'Please select a service area.';
+    if (!fields.message())    return 'Please include a message.';
+    return null;
+  }
+
+  function setStatus(type, msg) {
+    statusEl.className = type;
+    statusEl.textContent = msg;
+  }
+
+  submitBtn.addEventListener('click', async () => {
+    const error = validate();
+    if (error) { setStatus('error', error); return; }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    statusEl.className = '';
+    statusEl.textContent = '';
+
+    const payload = {
+      access_key:   fields.access_key(),
+      subject:      'New ASG Inquiry — ' + fields.service_area(),
+      from_name:    fields.from_name(),
+      botcheck:     fields.botcheck(),
+      first_name:   fields.first_name(),
+      last_name:    fields.last_name(),
+      organization: fields.organization(),
+      email:        fields.email(),
+      service_area: fields.service_area(),
+      message:      fields.message(),
+    };
+
+    try {
+      const res  = await fetch('https://api.web3forms.com/submit', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body:    JSON.stringify(payload),
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        setStatus('success', 'Inquiry received. ASG will be in touch.');
+        // Clear fields
+        ['first_name','last_name','organization','email','service_area','message']
+          .forEach(id => { document.getElementById(id).value = ''; });
+      } else {
+        setStatus('error', 'Submission failed. Please email contact@apexstrategicgroupllc.com directly.');
+      }
+    } catch (err) {
+      setStatus('error', 'Network error. Please email contact@apexstrategicgroupllc.com directly.');
+    }
+
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Submit Inquiry';
+  });
+</script>
+
 </body>
 </html>
+
