@@ -404,7 +404,19 @@
             <label class="form-label">Message</label>
             <textarea id="message" name="message" class="form-input" placeholder="Briefly describe your need or inquiry..." required></textarea>
           </div>
+<div class="privacy-consent">
+  <label class="privacy-label">
+    <input type="checkbox" id="privacy-consent" required />
+    <span>
+      By submitting this form, you consent to Apex Strategic Group contacting you regarding your inquiry.
+      Please review our
+      <a href="/privacy-policy.html" target="_blank">Privacy Policy</a>.
+    </span>
+  </label>
+</div>
 
+<button class="form-submit" id="submit-btn" type="button">Submit Inquiry</button>
+<div id="form-status"></div>
           <button class="form-submit" id="submit-btn" type="button">Submit Inquiry</button>
           <div id="form-status"></div>
 
