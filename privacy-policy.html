@@ -1,1 +1,480 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Privacy Policy | Apex Strategic Group LLC</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #080808;
+    --surface: #111111;
+    --card: #181818;
+    --border: #2a2a2a;
+    --border-light: #3a3a3a;
+    --silver: #c0c0c0;
+    --silver-dim: #8a8a8a;
+    --silver-faint: #4a4a4a;
+    --white: #f0f0f0;
+    --accent: #a8a8a8;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--black);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px; height: 68px;
+    background: rgba(8,8,8,0.92);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+  }
+
+  .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .nav-logo img { height: 48px; width: auto; object-fit: contain; }
+
+  .nav-brand {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--silver);
+    text-transform: uppercase;
+  }
+
+  .nav-links { display: flex; gap: 36px; }
+
+  .nav-links a {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--silver-dim);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--silver); }
+
+  .nav-cta {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--silver);
+    padding: 8px 20px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .nav-cta:hover { background: var(--white); }
+
+  .legal-hero {
+    padding: 140px 48px 56px;
+    background: var(--black);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .max-w { max-width: 1280px; margin: 0 auto; }
+
+  .section-label {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--silver-dim);
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 24px;
+    line-height: 1.1;
+  }
+
+  .section-title span { color: var(--silver); }
+
+  .section-rule {
+    width: 48px;
+    height: 2px;
+    background: var(--silver);
+    margin-bottom: 32px;
+  }
+
+  .legal-content {
+    padding: 72px 48px 100px;
+    background: var(--black);
+  }
+
+  .legal-card {
+    max-width: 900px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 48px;
+  }
+
+  .legal-card h2 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 24px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-top: 36px;
+    margin-bottom: 16px;
+  }
+
+  .legal-card h2:first-child { margin-top: 0; }
+
+  .legal-card p,
+  .legal-card li {
+    font-size: 15px;
+    line-height: 1.85;
+    color: var(--silver-dim);
+    font-weight: 300;
+    margin-bottom: 16px;
+  }
+
+  .legal-card ul {
+    margin-left: 24px;
+    margin-bottom: 20px;
+  }
+
+  .legal-card strong { color: var(--silver); font-weight: 500; }
+
+  .effective-date {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--silver-faint);
+    margin-bottom: 28px;
+  }
+
+  .legal-card a {
+    color: var(--silver);
+    text-decoration: none;
+    border-bottom: 1px solid var(--silver-faint);
+  }
+
+  .legal-card a:hover { color: var(--white); border-color: var(--silver); }
+
+  footer {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 48px 48px 32px;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 48px;
+  }
+
+  .footer-logo {
+    width: 80px;
+    height: auto;
+    margin-bottom: 16px;
+    display: block;
+    object-fit: contain;
+  }
+
+  .footer-brand-name {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--silver);
+    margin-bottom: 12px;
+  }
+
+  .footer-brand-desc {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--silver-faint);
+    font-weight: 300;
+  }
+
+  .footer-col-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--silver-dim);
+    margin-bottom: 16px;
+  }
+
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-links a {
+    font-size: 13px;
+    color: var(--silver-faint);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--silver); }
+
+  .footer-bottom {
+    border-top: 1px solid var(--border);
+    padding-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .footer-copy {
+    font-size: 12px;
+    color: var(--silver-faint);
+    font-family: 'Rajdhani', sans-serif;
+    letter-spacing: 0.08em;
+  }
+
+  .footer-legal {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .footer-legal a {
+    font-size: 12px;
+    color: var(--silver-faint);
+    text-decoration: none;
+    font-family: 'Rajdhani', sans-serif;
+    letter-spacing: 0.08em;
+    transition: color 0.2s;
+  }
+
+  .footer-legal a:hover { color: var(--silver); }
+
+  @media (max-width: 900px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .nav-logo img { height: 36px; }
+    .legal-hero { padding: 120px 24px 48px; }
+    .legal-content { padding: 48px 24px 72px; }
+    .legal-card { padding: 32px 24px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  }
+
+  @media (max-width: 600px) {
+    .footer-grid { grid-template-columns: 1fr; }
+    .footer-bottom { align-items: flex-start; }
+  }
+</style>
+</head>
+
+<body>
+
+<nav>
+  <a href="index.html#home" class="nav-logo">
+    <img src="./ASG_Logo2.png" alt="ASG Logo" />
+    <span class="nav-brand">Apex Strategic Group</span>
+  </a>
+
+  <div class="nav-links">
+    <a href="index.html#services">Services</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+
+  <a href="index.html#contact" class="nav-cta">Engage ASG</a>
+</nav>
+
+<section class="legal-hero">
+  <div class="max-w">
+    <p class="section-label">Legal</p>
+    <h1 class="section-title">Privacy <span>Policy</span></h1>
+    <div class="section-rule"></div>
+  </div>
+</section>
+
+<section class="legal-content">
+  <div class="max-w">
+    <div class="legal-card">
+
+      <p class="effective-date">Effective Date: [6/14/2026]</p>
+
+      <h2>1. Introduction</h2>
+      <p>
+        Apex Strategic Group LLC (“ASG,” “we,” “our,” or “us”) respects your privacy. This Privacy Policy explains how we collect, use, store, and protect information submitted through our website, including information provided through our contact or inquiry forms.
+      </p>
+      <p>
+        By using this website or submitting information through our website, you agree to the practices described in this Privacy Policy.
+      </p>
+
+      <h2>2. Information We Collect</h2>
+      <p>
+        We may collect information that you voluntarily provide to us through the website, including:
+      </p>
+      <ul>
+        <li>Name</li>
+        <li>Email address</li>
+        <li>Organization or company name</li>
+        <li>Service area of interest</li>
+        <li>Information included in your message or inquiry</li>
+        <li>Any other information you choose to submit</li>
+      </ul>
+      <p>
+        We do not ask you to submit sensitive personal information through the website. Please do not include classified, privileged, confidential, or highly sensitive operational information in a website form submission.
+      </p>
+
+      <h2>3. How We Use Information</h2>
+      <p>
+        We use information submitted through the website for legitimate business purposes, including:
+      </p>
+      <ul>
+        <li>Responding to inquiries</li>
+        <li>Evaluating service requests</li>
+        <li>Scheduling consultations</li>
+        <li>Communicating with prospective clients, partners, or vendors</li>
+        <li>Maintaining internal business records</li>
+        <li>Improving our services and website functionality</li>
+      </ul>
+
+      <h2>4. Contact Form Submissions</h2>
+      <p>
+        When you submit an inquiry through our contact form, the information you provide may be processed by a third-party form submission service for the purpose of delivering your message to ASG. We use this information only to review and respond to your inquiry.
+      </p>
+
+      <h2>5. Cookies and Analytics</h2>
+      <p>
+        At this time, ASG does not intentionally use advertising pixels, remarketing trackers, or advanced analytics tools on this website. If analytics, cookies, or similar technologies are added in the future, this Privacy Policy may be updated accordingly.
+      </p>
+      <p>
+        Basic technical data may still be processed by our website hosting provider or other infrastructure providers as part of standard website operation, security, and performance management.
+      </p>
+
+      <h2>6. Information Sharing</h2>
+      <p>
+        ASG does not sell, rent, or trade personal information. We may share information only when reasonably necessary to:
+      </p>
+      <ul>
+        <li>Respond to your inquiry or provide requested services</li>
+        <li>Use trusted service providers that support website or business operations</li>
+        <li>Comply with applicable law, regulation, subpoena, court order, or lawful request</li>
+        <li>Protect the rights, safety, property, or security of ASG, our clients, or others</li>
+      </ul>
+
+      <h2>7. Data Security</h2>
+      <p>
+        We use reasonable administrative, technical, and organizational safeguards to protect information submitted through our website. However, no method of transmission over the internet or electronic storage is completely secure. You should avoid submitting sensitive operational, classified, privileged, or confidential information through the website.
+      </p>
+
+      <h2>8. Data Retention</h2>
+      <p>
+        We retain information for as long as reasonably necessary to respond to inquiries, maintain business records, support legitimate business purposes, comply with legal obligations, or resolve disputes.
+      </p>
+
+      <h2>9. Third-Party Links</h2>
+      <p>
+        This website may contain links to third-party websites or platforms, including professional networking pages. ASG is not responsible for the privacy practices, security, or content of third-party websites. You should review the privacy policies of any external websites you visit.
+      </p>
+
+      <h2>10. Your Choices</h2>
+      <p>
+        You may contact us to request that we update, correct, or delete personal information you previously submitted, subject to any legal, security, contractual, or recordkeeping obligations.
+      </p>
+
+      <h2>11. Children’s Privacy</h2>
+      <p>
+        This website is intended for business and professional audiences. We do not knowingly collect information from children under the age of 13.
+      </p>
+
+      <h2>12. Updates to This Privacy Policy</h2>
+      <p>
+        ASG may update this Privacy Policy from time to time. Updates will be posted on this page with a revised effective date.
+      </p>
+
+      <h2>13. Contact Us</h2>
+      <p>
+        If you have questions about this Privacy Policy or how your information is handled, please contact:
+      </p>
+      <p>
+        <strong>Apex Strategic Group LLC</strong><br />
+        Email: <a href="mailto:contact@apexstrategicgroupllc.com">contact@apexstrategicgroupllc.com</a><br />
+        Website: apexstrategicgroupllc.com
+      </p>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="max-w">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="./ASG_Logo2.png" class="footer-logo" alt="ASG" />
+        <div class="footer-brand-name">Apex Strategic Group LLC</div>
+        <p class="footer-brand-desc">Practitioner-led security consulting. Operational rigor. Institutional standards. Real-world results.</p>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Services</div>
+        <ul class="footer-links">
+          <li><a href="index.html#services">Executive Protection</a></li>
+          <li><a href="index.html#services">Intelligence / OSINT</a></li>
+          <li><a href="index.html#services">Business Development</a></li>
+          <li><a href="index.html#services">Operational Support</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Company</div>
+        <ul class="footer-links">
+          <li><a href="index.html#about">About ASG</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+          <li><a href="index.html#contact">Engage ASG</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Connect</div>
+        <ul class="footer-links">
+          <li><a href="https://www.linkedin.com/company/apex-strategic-group" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          <li><a href="index.html#contact">NDA / Intake Form</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2025 Apex Strategic Group LLC. All rights reserved.</span>
+      <div class="footer-legal">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms-of-use.html">Terms of Use</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
+```
 
